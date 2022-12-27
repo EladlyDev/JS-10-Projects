@@ -9,6 +9,39 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    
+    <div class="quiz-container">
+        <div class="result">
+            <p class="correct">Correct : <span>0</span> </p>
+            <p class="uncorrect">Uncorrect : <span>0</span></p>
+        </div>
+        <div class="final-result">
+            <h1 class = 'result-h1'>Your Result's</h1>
+                <center><b><p data-final-result>0</p></b></center>
+        </div>
+        <div class="quiz-header">
+                <h2 data-question class="question">Question text</h2>
+                <p class="warrning"></p>
+                
+            <ul>
+                <li>
+                    <input  type="radio" id="a" name="answer">
+                    <label data-answer for="a">Question</label>
+                </li>
+                <li>
+                    <input  type="radio" id="b" name="answer">
+                    <label data-answer for="b">Question</label>
+                </li>
+                <li>
+                    <input  type="radio" id="c" name="answer">
+                    <label data-answer for="c">Question</label>
+                </li>
+                <li>
+                    <input  type="radio" id="d" name="answer">
+                    <label data-answer for="d">Question</label>
+                </li>
+            </ul>
+        </div>
+        <button data-submit="">Submit</button>
+    </div>
 </body>
 </html>
