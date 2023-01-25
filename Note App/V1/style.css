@@ -1,0 +1,593 @@
+@import url('https://fonts.googleapis.com/css2?family=Sofia|Poppins|Cairo:wght@100;300;400;500;700;800;900&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Cairo', sans-serif;
+}
+
+header {
+    width: 100%;
+    height: 8vh;
+    overflow: hidden;
+    margin: 0;
+}
+
+header .header__logo {
+    direction: rtl;
+}
+
+header .header__logo img {
+    width: 55px;
+    margin: 5px;
+}
+
+/* main */
+main {
+    width: 100%;
+    display: flex;
+}
+
+/* side bar */
+aside {
+    flex: 10%;
+    background-color: white;
+    overflow: hidden;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: auto;
+}
+
+nav button.nav-toggle {
+    width: 100%;
+    padding: .56em;
+    font-size: 3em;
+    background-color: transparent;
+    border: none;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 2.87em 0;
+    width: 100%;
+    text-align: center;
+}
+
+nav ul li {
+    flex-grow: 100%;
+    padding: 4.5em;
+    transition: all .3s;
+}
+
+nav ul li:hover {
+    background-color: #ecce75;
+}
+
+nav ul li:active i {
+    color: #836200;
+}
+
+nav ul li i {
+    color: rgb(0, 0, 0);
+}
+
+/* article (main) */
+article {
+    border-top-left-radius: 14px;
+    flex: 90%;
+    background-color: #FFE082;
+}
+
+article .notes-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 7px;
+    gap: 1%;
+}
+
+article .note {
+    flex-grow: 0;
+    flex-shrink: 0;
+    background-color: transparent;
+    width: calc((100% - 3%) / 4);
+    max-height: 30vh;
+    overflow: hidden;
+    border: 2px solid #aaa;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+article .note .note-head {
+    margin-top: -5px;
+    margin-bottom: -25px;
+    text-align: center;
+    position: relative;
+}
+
+.note-head .note-title {
+    font-size: 25px;
+    text-transform: capitalize;
+
+}
+
+.pin-container,
+.trash-container {
+    background-color: #ddd;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    clip-path: circle();
+    display: none;
+}
+
+.pin-container {
+    left: -6px;
+    top: -25px;
+}
+
+.trash-container {
+    right: -6px;
+    top: -25px;
+}
+
+.pin,
+.trash {
+    position: absolute;
+    top: 33%;
+    right: 37%;
+    transition: all .2s;
+}
+
+.pin:hover {
+    color: darkgreen;
+    cursor: pointer;
+}
+
+.note:hover .pin-container,
+.note:hover .trash-container {
+    display: block;
+    animation: show 1 .5s ease;
+}
+
+@keyframes show {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+article .note .note-body {
+    text-align: center;
+    overflow: hidden;
+}
+
+article .note .note-body:hover {
+    cursor: grab;
+}
+
+article .note .note-body p {
+    overflow: hidden;
+    word-break: break-all;
+    line-height: 1.1;
+    height: 90%;
+    font-size: 1.2em;
+    padding: 5px;
+}
+
+article .note .note-body p:hover {
+    cursor: default
+}
+
+
+/* 
+article .note .note-bottom {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: transparent;
+    gap: 5em;
+    height: 20%;
+}
+
+article .note .note-bottom button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.23em
+} */
+
+.fa-heart:hover {
+    color: purple;
+    cursor: pointer;
+}
+
+.fa-trash:hover {
+    color: rgb(163, 0, 0);
+    cursor: pointer;
+}
+
+article .note--add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .3s;
+}
+
+article .note--add i {
+    font-size: 10em;
+}
+
+article .note--add:hover {
+    background-color: #ffa20057;
+    text-shadow: 4px 4px 10px rgb(156, 128, 1);
+    cursor: pointer;
+}
+
+/* Note Popup */
+.popup-container {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.7);
+    top: 0;
+    left: 0;
+    opacity: 0;
+    display: none;
+    transition: all 1s ease;
+}
+
+.open-popup {
+    opacity: 1;
+    display: block;
+}
+
+.popup {
+    width: 500px;
+    height: 80vh;
+    background-color: white;
+    border: 2px solid rgba(0, 0, 0, 0.541);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.377);
+    z-index: 99;
+}
+
+.popup .note-title {
+    width: 100%;
+    height: 5vh;
+    border: none;
+    outline: none;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+
+}
+
+.popup textarea:focus,
+.note-title:focus {
+    outline: none;
+}
+
+.popup textarea {
+    width: 100%;
+    height: 80%;
+    resize: none;
+    border: none;
+    font-size: 19px;
+
+}
+
+.save-btn:hover {
+    cursor: pointer
+}
+
+.save-btn {
+    width: 100%;
+    height: 10%;
+    font-size: 20px;
+}
+
+.popup-close {
+    position: relative;
+    left: 100%;
+    bottom: 12px;
+}
+
+.popup-close:hover {
+    color: darkred;
+    cursor: pointer;
+}
+
+/* FOOTER */
+
+footer {
+    display: flex;
+    width: 100%;
+    height: 8vh;
+    color: black;
+    justify-content: center;
+    align-items: center;
+    word-spacing: .1em;
+    background-color: #aaa;
+}
+
+footer span {
+    text-shadow: 1px 1px 4px black;
+    font-weight: bold;
+    font-size: 22px;
+    text-transform: uppercase;
+}
+
+footer i {
+    color: red;
+}
+
+/* Making it Responsive */
+
+/* 1500px+ */
+@media screen and (min-width: 1500px) {
+
+    aside ul li {
+        padding: 100px 20px;
+        margin: auto;
+        font-size: 25px
+    }
+
+    nav button.nav-toggle {
+        padding: 50px 0;
+        margin: auto;
+        margin-bottom: -50px;
+        font-size: 40px;
+    }
+
+    article {
+        width: 95%;
+    }
+
+}
+
+/* screen: 1300 to 1500px*/
+@media screen and (max-width: 1500px) {
+
+    aside ul li {
+        padding: 85px 20px;
+        margin: auto;
+        font-size: 25px
+    }
+
+    nav button.nav-toggle {
+        padding: 50px 0;
+        margin: auto;
+        margin-bottom: -90px;
+        font-size: 40px;
+    }
+
+    article {
+        width: 95%;
+    }
+
+}
+
+/* screen: 1200px -1300px*/
+@media screen and (max-width: 1300px) {
+
+    body {
+        font-size: 17px;
+    }
+
+    aside {
+        width: 5%;
+    }
+
+    aside ul li {
+        padding: 70px 20px;
+        margin: auto;
+        font-size: 25px
+    }
+
+    nav button.nav-toggle {
+        padding: 50px 0;
+        margin: auto;
+        margin-bottom: -50px;
+        font-size: 40px;
+    }
+
+    article {
+        width: 95%;
+    }
+
+}
+
+/* For Desktop or large-size screen: 1024px -1200px*/
+@media screen and (max-width: 1200px) {
+    aside {
+        width: 5%;
+    }
+
+    aside ul li {
+        padding: 70px 20px;
+        margin: auto;
+        font-size: 20px;
+        color: black;
+    }
+
+    aside ul li:active {
+        color: #885600
+    }
+
+    nav button.nav-toggle {
+        padding: 10px 0;
+        margin: auto;
+        margin-bottom: 10px;
+        font-size: 40px;
+    }
+
+    article {
+        width: 95%;
+    }
+
+}
+
+/* For Laptop or small-size screen: 768px -1024px */
+@media screen and (max-width: 1024px) {
+    aside {
+        width: 5%;
+    }
+
+    aside ul li {
+        padding: 70px 20px;
+        margin: auto;
+        font-size: 20px
+    }
+
+    nav button.nav-toggle {
+        padding: 10px 0;
+        margin: auto;
+        margin-bottom: -22px;
+        font-size: 40px;
+    }
+
+    article {
+        width: 95%;
+    }
+
+    article .note {
+        width: calc((100% - 2%) / 3);
+    }
+
+}
+
+/* For Tablets or iPad: 480px - 768px */
+@media screen and (max-width: 768px) {
+    aside {
+        width: 10vw;
+    }
+
+    aside ul li {
+        padding: 70px 10px;
+        margin: auto;
+        font-size: 25px
+    }
+
+    nav button.nav-toggle {
+        padding: 20px 0;
+        margin: auto;
+        margin-bottom: -22px;
+        font-size: 40px;
+    }
+
+    article {
+        width: 90vw;
+    }
+
+    article .note {
+        width: calc((100% - 5%) / 2);
+        margin: 1%;
+    }
+
+
+    .popup {
+        width: 80%;
+    }
+
+}
+
+/* For Mobile devices: 320px-480px */
+@media screen and (max-width: 480px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    header {
+        height: 10vh;
+        position: relative;
+    }
+
+    header img {
+        position: absolute;
+        right: 0;
+    }
+
+    aside {
+        position: absolute;
+        top: 10px;
+        left: -15px;
+        width: 100px;
+        height: auto;
+        background-color: transparent;
+        z-index: 99;
+    }
+
+    footer {
+        position: absolute;
+        bottom: 0;
+    }
+
+    aside ul {
+        padding: 0;
+        margin: 0;
+        margin-top: -13px;
+        width: 50px;
+        background-color: rgba(187, 187, 187, 0.753);
+        display: none;
+    }
+
+    nav button.nav-toggle:hover {
+        cursor: pointer;
+    }
+
+
+    aside ul li {
+        padding: 15px 10px;
+        margin: auto;
+        font-size: 20px;
+        color: rgb(0, 0, 0);
+    }
+
+    nav button.nav-toggle {
+        padding: 5px 0;
+        margin: auto;
+        font-size: 40px;
+    }
+
+    article {
+
+        background-color: white;
+    }
+
+    .notes-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    article .note {
+        width: calc((100% - 2) / 2);
+    }
+
+    .popup-container {
+        z-index: 99999999999999999999;
+    }
+
+    .popup {
+        width: 100%;
+        height: 100%;
+    }
+}

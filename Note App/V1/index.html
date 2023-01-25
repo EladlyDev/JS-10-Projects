@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note It</title>
+    <link rel="icon" href="note-it.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <script src="https://kit.fontawesome.com/51e7ff2310.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header__logo">
+            <img src="note-it.png" alt="note-it logo">
+        </div>
+    </header>
+    <main>
+        <aside>
+            <nav>
+                <button class="nav-toggle">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                </button>
+                <ul>
+                    <a href="#">
+                        <li data-addnote="pen"><i class="fa fa-pencil"></i></li>
+                    </a>
+                    <a href="#">
+                        <li><i class="fa-solid fa-layer-group"></i></li>
+                    </a>
+                    <a href="#">
+                        <li><i class="fa fa-share"></i></li>
+                    </a>
+                </ul>
+            </nav>
+        </aside>
+        <article>
+            <div data-notesContainer class="notes-container">
+                <!-- <div  tabindex="1" class="note">
+                    <div class="note-head">
+                        <h3 class="note-title">title</h3>
+                        <span class="pin-container">
+                            <i class="fa-solid fa-thumbtack pin"></i>
+                        </span>
+                        <span class="trash-container">
+                            <i class="fa-solid fa-trash trash"></i>
+                        </span>
+                    </div>
+                    <div class="note-body">
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quod dolorum autem, fugit aut nostrum officiis voluptas architecto eum fuga itaque deleniti corporis cupiditate et minima. Ullam tempora atque natus voluptatum!</p>
+                    </div>
+                </div> -->
+                <div data-addnote="plus" tabindex="1" class="note note--add">
+                    <i class="fa-thin fa-plus"></i>
+                </div>
+            </div>
+        </article>
+    </main>
+    <div data-popup="container" class="popup-container">
+        <div data-popup="popup" class="popup">
+            <i data-popup="close" class="fa-solid fa-x popup-close"></i>
+            <input data-note="title" placeholder="Write Title Here..." class="note-title" type="text">
+            <textarea data-note="text" placeholder="Write Note Here..." autofocus name="note-text"
+                id="note-text"></textarea>
+            <button data-note="save" class="save-btn">Save</button>
+        </div>
+    </div>
+    <footer>
+        <p>Maded With <i class="fa-solid fa-heart"></i> By <span>Kholy</span></p>
+    </footer>
+</body>
+
+</html>

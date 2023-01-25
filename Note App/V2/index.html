@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Fastest Browser Note App For EVER">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoteIt!</title>
+    <link rel="icon" href="media/note-it.png">
+    <script src="https://kit.fontawesome.com/51e7ff2310.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <div class="page">
+        <header>
+            <!-- nav for small devices -->
+            <nav class="small small-nav">
+                <div class="burger"></div>
+                <ul>
+                    <a href="#">
+                        <li data-addnote="pen"><i class="fa fa-pencil"></i></li>
+                    </a>
+                    <a href="#">
+                        <li><i class="fa-solid fa-layer-group"></i></li>
+                    </a>
+                    <a href="#">
+                        <li><i class="fa fa-share"></i></li>
+                    </a>
+                </ul>
+            </nav>
+            <h1 class="title no-small">Note It</h1>
+            <img src="media/note-it.png" alt="Note It logo" class="logo">
+        </header>
+        <main>
+            <aside data-aside>
+                <nav class="main-nav">
+                    <div data-menu-toggle title="Menu" class="burger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <ul>
+                        <a data-note-add title="add note" href="#">
+                            <li data-addnote="pen"><i class="fa fa-pencil"></i></li>
+                        </a>
+                        <a title="note groups" href="#">
+                            <li><i class="fa-solid fa-layer-group"></i></li>
+                        </a>
+                        <a title="share" href="#">
+                            <li><i class="fa fa-share"></i></li>
+                        </a>
+                    </ul>
+                </nav>
+            </aside>
+            <section data-section>
+
+                <div class="note-container">
+                    <div data-has-add="true" data-note-row="1" class="note-row">
+                        <div data-note-add class="note-card note-card-add">
+                            <i class="fa-thin fa-plus"></i>
+                        </div>
+
+                    </div>
+                    <div data-note-row="2" class="note-row">
+
+                    </div>
+                    <div data-note-row="3" class="note-row">
+
+                    </div>
+                    <div data-note-row="4" class="note-row">
+
+                    </div>
+                </div>
+            </section>
+        </main>
+        <div data-popup="parent" class="popup close">
+            <div class="popup-container">
+                <div class="popup-note-container">
+                    <div class="popup-note-header">
+                        <input data-note-origin="title" type="text" name="note-content" class="note-title"
+                            placeholder="Title">
+                        <button data-popup="close" class="note-cancel">Cancel</button>
+                    </div>
+                    <div class="popup-note-body">
+                        <textarea data-note-origin="body" name="note-content" class="note-content"
+                            placeholder="Note"></textarea>
+                    </div>
+                    <div class="popup-note-footer">
+                        <button data-popup="saveNote" class="note-save">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div data-popup="alert-parent-warrning" class="popup close">
+            <div class="popup-container alert-container">
+                <div class="alert alert--warrning">
+                    <div class="alert-header">
+                        <h4></h4>
+                    </div>
+                    <div class="alert-body">
+                        <p>Want to delete this note?</p>
+                    </div>
+                    <div class="alert-footer">
+                        <button data-alert-response='true' class="btn-true">Delete</button>
+                        <button data-alert-response='false' class="btn-false">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
