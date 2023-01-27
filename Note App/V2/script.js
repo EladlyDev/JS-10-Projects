@@ -19,7 +19,7 @@ class App {
         const noteObj = {
             title,
             body,
-            id
+            id,
         };
         return noteObj;
     }
@@ -164,15 +164,31 @@ class App {
 
     //delete note
     deleteNote(noteId) {
-        console.log({ notesArr })
-
         notesArr = notesArr.filter((note) => {
             return note.id != noteId
         });
-        console.log({ notesArr })
         this.updateStorage(notesArr)
-        console.log({ notesArr })
+    }
 
+    //edit note
+    editNote(noteId) {
+        const note = notesArr.find((note) => {
+            return note.id === noteId
+        })
+        noteOriginElementTitle.value = note.title;
+        noteOriginElementBody.value = note.body;
+        this.openPopup()
+        popupSaveNoteBtn.onclick = () => {
+            console.log('save change');
+            notesArr = notesArr.filter((note) => {
+                return note.id !== noteId;
+            })
+            this.resetRows(noteRows)
+            this.updateStorage(notesArr)
+            notesArr.forEach((note) => {
+                this.showNotes(note)
+            })
+        }
     }
 }
 
@@ -198,6 +214,8 @@ const noteApp = new App();
 addNoteBtns.forEach((btn) => {
     btn.addEventListener('click', function () {
         noteApp.openPopup();
+        noteOriginElementBody.value = ''
+        noteOriginElementTitle.value = ''
     })
 })
 
@@ -248,7 +266,6 @@ window.addEventListener('resize', () => {
 // localStorage.clear()
 
 window.addEventListener('click', e => {
-    console.log(e.target)
     const noteBtn = e.target.dataset.noteBtn ? e.target.dataset.noteBtn : null;
     const noteId = e.target.parentNode.parentNode.dataset.noteId ? +e.target.parentNode.parentNode.dataset.noteId : null;
     switch (noteBtn) {
@@ -273,7 +290,16 @@ window.addEventListener('click', e => {
             break;
         case 'edit':
             console.log('edit');
+            noteApp.editNote(noteId)
             break;
+    }
+
+    //edit when clicking on the note body
+    if (e.target.classList.contains('note-body')) {
+        const noteId = +e.target.parentNode.dataset.noteId
+        console.log('edit');
+        noteApp.editNote(noteId)
+
     }
 
 })

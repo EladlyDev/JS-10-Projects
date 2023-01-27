@@ -138,7 +138,7 @@ main section .note-container {
 }
 
 .note-container .note-row {
-    flex-basis: calc(100% / 3);
+    width: 25%;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -379,7 +379,6 @@ aside.collapse li::after {
     border-radius: 4px;
     transform: translateX(-50%) translateY(-50%) rotate(-90deg);
     position: absolute;
-
 }
 
 main section.big {
